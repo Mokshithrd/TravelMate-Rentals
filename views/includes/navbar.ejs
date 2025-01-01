@@ -1,0 +1,58 @@
+<script>
+    window.addEventListener("scroll", function() {
+        const navbar = document.querySelector(".navbar");
+        navbar.classList.toggle("scrolled", window.scrollY > 50);
+    });
+</script>
+<style>
+    .host {
+        border-radius: 20px;
+    }
+    .filter-dropdown {
+        min-width: 200px;
+    }
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+    <div class="container-fluid">
+        <!-- Brand Logo -->
+        <a class="navbar-brand d-flex align-items-center text-primary" href="/listing">
+            <i class="fa-solid fa-car fa-xl me-2"></i>
+            <span class="fw-bold">TravelMate</span>
+        </a>
+
+        <!-- Toggler Button -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar Links -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link text-secondary fw-semibold" href="/listing">Browse Vehicles</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-secondary fw-semibold" href="/about">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-secondary fw-semibold" href="/contact">Contact Us</a>
+                </li>
+            </ul>
+
+            
+
+            <!-- Login/Signup Buttons -->
+            <div class="ms-auto">
+                <button class="btn btn-outline-primary host"><a class="nav-link text-secondary fw-semibold" href="/listing/new">Become Host</a></button>
+                <% if(!currUser){%>
+                <a href="/signUp" class="btn btn-outline-primary me-2 host"><b>Signup</b></a>
+                <a href="/login" class="btn btn-outline-primary me-2 host"><b>Login</b></a>
+                <% } %>
+                <% if(currUser){%>
+                <a href="/logout" class="btn btn-outline-primary me-2 host">Logout</a>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</nav>
