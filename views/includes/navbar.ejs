@@ -1,15 +1,80 @@
 <script>
     window.addEventListener("scroll", function() {
         const navbar = document.querySelector(".navbar");
-        navbar.classList.toggle("scrolled", window.scrollY > 50);
+        if (window.scrollY > 50) {
+            navbar.classList.add("scrolled");
+        } else {
+            navbar.classList.remove("scrolled");
+        }
     });
 </script>
+
 <style>
+    /* Navbar Background Fixed on Scroll */
+    .navbar {
+        transition: background 0.3s ease-in-out;
+    }
+    
+    .navbar.scrolled {
+        background: white !important;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Custom Button Styles */
     .host {
         border-radius: 20px;
+        background: transparent;
+        border: none;
+        padding: 10px 20px;
+        transition: all 0.3s ease-in-out;
     }
-    .filter-dropdown {
-        min-width: 200px;
+
+    .host a {
+        color: #007bff !important;
+        text-decoration: none; /* Removed underline */
+    }
+
+    .host:hover {
+        background: rgba(0, 123, 255, 0.1);
+    }
+
+    /* Navbar links */
+    .nav-link {
+        color: #555 !important;
+        font-weight: 600;
+        transition: color 0.3s;
+    }
+
+    .nav-link:hover {
+        color: #007bff !important;
+    }
+
+    /* Removes underline for login/logout/signup */
+    .auth-links a {
+        color: #007bff !important;
+        text-decoration: none;
+        font-weight: 600;
+        padding: 8px 15px;
+        transition: background 0.3s ease-in-out;
+        border-radius: 20px;
+    }
+
+    .auth-links a:hover {
+        background: rgba(0, 123, 255, 0.1);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 992px) {
+        .auth-links {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .host {
+            display: block;
+            text-align: center;
+            width: 100%;
+        }
     }
 </style>
 
@@ -30,27 +95,25 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link text-secondary fw-semibold" href="/listing">Browse Vehicles</a>
+                    <a class="nav-link" href="/listing">Browse Vehicles</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-secondary fw-semibold" href="/about">About Us</a>
+                    <a class="nav-link" href="/about">About Us</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-secondary fw-semibold" href="/contact">Contact Us</a>
+                    <a class="nav-link" href="/contact">Contact Us</a>
                 </li>
             </ul>
 
-            
-
             <!-- Login/Signup Buttons -->
-            <div class="ms-auto">
-                <button class="btn btn-outline-primary host"><a class="nav-link text-secondary fw-semibold" href="/listing/new">Become Host</a></button>
-                <% if(!currUser){%>
-                <a href="/signUp" class="btn btn-outline-primary me-2 host"><b>Signup</b></a>
-                <a href="/login" class="btn btn-outline-primary me-2 host"><b>Login</b></a>
+            <div class="ms-auto auth-links">
+                <button class="host"><a href="/listing/new">Become Host</a></button>
+                <% if (!currUser) { %>
+                    <a href="/signUp">Signup</a>
+                    <a href="/login">Login</a>
                 <% } %>
-                <% if(currUser){%>
-                <a href="/logout" class="btn btn-outline-primary me-2 host">Logout</a>
+                <% if (currUser) { %>
+                    <a href="/logout">Logout</a>
                 <% } %>
             </div>
         </div>

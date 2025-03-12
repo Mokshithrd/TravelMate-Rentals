@@ -35,11 +35,11 @@ module.exports.login=async(req,res)=>{
 };
 
 module.exports.logout=async(req,res,next)=>{
-    req.logOut((err)=>{
-        if(err){
-            return next(err);
-        }
-        req.flash("success","LogOut Successfully!");
-        res.redirect("/listing");
+        req.logOut((err)=>{
+            if(err){
+                return next(err);
+            }
+            req.flash("success","LogOut Successfully!");
+            res.redirect("/listing");
     })
 };
