@@ -18,9 +18,7 @@ TravelMate Rentals is a web-based platform that allows users to **rent cars and 
 |---------------|-------------|----------|---------------|
 | HTML, CSS, EJS, Bootstrap | Node.js, Express.js | MongoDB  | Git, GitHub, dotenv, nodemon |
 
-## 📸 Screenshots
 
-> _Add screenshots of your homepage, booking page, admin dashboard, etc._
 
 ## 📂 Folder Structure
 
