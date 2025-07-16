@@ -1,91 +1,154 @@
 <% layout("/layout/boilerplate")-%>
 
+<style>
+  .help-item {
+    background: #f0f8ff;
+    border-radius: 12px;
+    padding: 30px 15px;
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+  }
+
+  .help-item:hover {
+    background-color: #e3f2fd;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .help-icon {
+    font-size: 2rem;
+    color: #0d6efd;
+  }
+
+  .help-item p {
+    font-weight: 500;
+    font-size: 1rem;
+    color: #333;
+  }
+
+  .accordion-button {
+    font-weight: 600;
+    font-size: 1rem;
+    color: #0d6efd;
+  }
+
+  .accordion-button:not(.collapsed) {
+    background-color: #e3f2fd;
+    color: #0a58ca;
+    box-shadow: none;
+  }
+
+  .accordion-item {
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 15px;
+    border: 1px solid #dee2e6;
+  }
+
+  .btn-outline-dark {
+    border-radius: 8px;
+    padding: 10px 25px;
+    font-weight: 600;
+  }
+</style>
+
 <div class="container my-5">
-    <!-- Help & Support Section -->
-    <h3 class="fw-bold mb-4">Help & Support</h3>
-    <div class="row text-center mb-5">
-      <!-- Help Categories -->
-      <div class="col-md-2 offset-md-1">
-        <div class="help-item">
-          <i class="fa fa-users help-icon"></i>
-          <p class="mt-2">Joining Zoomcar</p>
-        </div>
-      </div>
-      
-      <div class="col-md-2">
-        <div class="help-item">
-          <i class="fa fa-car help-icon"></i>
-          <p class="mt-2">Booking a Zoomcar</p>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div class="help-item">
-          <i class="fa fa-calculator help-icon"></i>
-          <p class="mt-2">Payments and Charges</p>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div class="help-item">
-          <i class="fa fa-wallet help-icon"></i>
-          <p class="mt-2">Wallet & Refunds</p>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div class="help-item">
-          <i class="fa fa-tags help-icon"></i>
-          <p class="mt-2">Deals & Discounts</p>
-        </div>
-      </div>
-      <!-- <div class="col-md-2">
-        <div class="help-item">
-          <i class="fa fa-headset help-icon"></i>
-          <p class="mt-2">Live Assistance</p>
-        </div>
-      </div> -->
-    </div>
-  
-    <!-- Popular Queries Section -->
-    <h4 class="fw-bold">Popular Queries</h4>
-    <div class="accordion mt-3" id="popularQueries">
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="headingOne">
-          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-            Do I have to return the car to the same location where I picked it up?
-          </button>
-        </h2>
-        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#popularQueries">
-          <div class="accordion-body">
-            Yes, the car must be returned to the same location unless specified otherwise in your booking.
-          </div>
-        </div>
-      </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="headingTwo">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-            Can I book for any period of time?
-          </button>
-        </h2>
-        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#popularQueries">
-          <div class="accordion-body">
-            Yes, you can book for any available duration, ranging from a few hours to several days.
-          </div>
-        </div>
-      </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="headingThree">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-            What happens if I return the car late?
-          </button>
-        </h2>
-        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#popularQueries">
-          <div class="accordion-body">
-            Late returns may incur additional charges as per the company’s policy.
-          </div>
-        </div>
+  <!-- Help & Support Section -->
+  <h3 class="fw-bold mb-4 text-primary text-center">Help & Support</h3>
+  <div class="row justify-content-center g-4 text-center">
+    <!-- Help Categories -->
+    <div class="col-sm-6 col-md-4 col-lg-2">
+      <div class="help-item">
+        <i class="fa fa-users help-icon mb-3"></i>
+        <p>Joining Zoomcar</p>
       </div>
     </div>
-    <div class="text-center mt-3">
-      <button class="btn btn-outline-dark">Show More</button>
+
+    <div class="col-sm-6 col-md-4 col-lg-2">
+      <div class="help-item">
+        <i class="fa fa-car help-icon mb-3"></i>
+        <p>Booking a Zoomcar</p>
+      </div>
+    </div>
+
+    <div class="col-sm-6 col-md-4 col-lg-2">
+      <div class="help-item">
+        <i class="fa fa-calculator help-icon mb-3"></i>
+        <p>Payments & Charges</p>
+      </div>
+    </div>
+
+    <div class="col-sm-6 col-md-4 col-lg-2">
+      <div class="help-item">
+        <i class="fa fa-wallet help-icon mb-3"></i>
+        <p>Wallet & Refunds</p>
+      </div>
+    </div>
+
+    <div class="col-sm-6 col-md-4 col-lg-2">
+      <div class="help-item">
+        <i class="fa fa-tags help-icon mb-3"></i>
+        <p>Deals & Discounts</p>
+      </div>
     </div>
   </div>
-  
+</div>
+
+  <!-- Popular Queries Section -->
+  <h4 class="fw-bold text-primary mb-3">Popular Queries</h4>
+  <div class="accordion" id="popularQueries">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingOne">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+          aria-expanded="true" aria-controls="collapseOne">
+          Do I have to return the car to the same location where I picked it up?
+        </button>
+      </h2>
+      <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+        data-bs-parent="#popularQueries">
+        <div class="accordion-body">
+          Yes, the car must be returned to the same location unless specified otherwise in your booking.
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingTwo">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+          data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Can I book for any period of time?
+        </button>
+      </h2>
+      <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+        data-bs-parent="#popularQueries">
+        <div class="accordion-body">
+          Yes, you can book for any available duration, ranging from a few hours to several days.
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingThree">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+          data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          What happens if I return the car late?
+        </button>
+      </h2>
+      <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+        data-bs-parent="#popularQueries">
+        <div class="accordion-body">
+          Late returns may incur additional charges as per the company’s policy.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-center mt-4">
+    <button class="btn btn-outline-dark"><i class="fa fa-chevron-down me-2"></i>Show More</button>
+  </div>
+</div>

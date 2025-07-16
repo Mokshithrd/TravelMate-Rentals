@@ -39,7 +39,24 @@ router
 
 router.get('/:_id/edit', isLoggedIn, wrapAsync(listingController.renderEditform));
 
-
+router.get('/search', async (req, res) => {
+    const query = req.query.q || '';
+    const regex = new RegExp(query, 'i'); // case-insensitive
+    try {
+        const listings = await Listing.find({
+            $or: [
+                { brand: regex },
+                { model: regex },
+                { location: regex },
+                { type: regex }
+            ]
+        });
+        res.render('listing/index', { listings, searchTerm: query }); // make sure 'listing/index' exists
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Internal Server Error");
+    }
+});
 
 
 module.exports = router;

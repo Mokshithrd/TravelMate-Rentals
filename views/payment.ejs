@@ -1,0 +1,182 @@
+<% layout("/layout/boilerplate") %>
+
+<style>
+    body {
+        background: #f8faff;
+        font-family: 'Inter', sans-serif;
+    }
+
+    .payment-container {
+        max-width: 700px;
+        margin: 50px auto;
+        padding: 30px;
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .summary-section, .payment-form-section {
+        padding: 25px;
+        border-radius: 10px;
+        margin-bottom: 25px;
+        background-color: #f8faff;
+        border: 1px solid #e0e7ff;
+    }
+
+    .summary-section h5, .payment-form-section h5 {
+        color: #1a73e8;
+        font-weight: bold;
+        margin-bottom: 20px;
+        border-bottom: 2px solid #e0e7ff;
+        padding-bottom: 10px;
+    }
+
+    .summary-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 0;
+        font-size: 1rem;
+        border-bottom: 1px dashed #e9ecef;
+    }
+
+    .summary-item:last-child {
+        border-bottom: none;
+    }
+
+    .summary-item strong {
+        color: #343a40;
+    }
+
+    .total-price-display {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #00c853;
+        text-align: center;
+        margin-top: 30px;
+        padding: 15px;
+        background-color: #e6ffed;
+        border-radius: 10px;
+        border: 1px solid #c3e6cb;
+    }
+
+    .form-control {
+        border-radius: 8px;
+        padding: 12px 15px;
+        font-size: 1rem;
+        border: 1px solid #ced4da;
+    }
+
+    .form-label {
+        font-weight: 600;
+        color: #343a40;
+        margin-bottom: 8px;
+    }
+
+    .btn-pay {
+        background-color: #1a73e8;
+        border-color: #1a73e8;
+        transition: all 0.3s ease;
+        border-radius: 8px;
+        padding: 15px 30px;
+        font-weight: 600;
+        letter-spacing: 0.8px;
+        font-size: 1.1rem;
+    }
+
+    .btn-pay:hover {
+        background-color: #0d47a1;
+        border-color: #0d47a1;
+        transform: translateY(-3px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    }
+</style>
+
+<body>
+    <div class="payment-container">
+        <h3 class="text-center fw-bold text-primary mb-4">Confirm Your Booking & Payment</h3>
+
+        <!-- Booking Summary Section -->
+        <div class="summary-section">
+            <h5 class="text-center">Booking Summary</h5>
+            <div class="summary-item">
+                <span>Vehicle:</span>
+                <strong><%= bookingDetails.vehicleBrand %> <%= bookingDetails.vehicleModel %></strong>
+            </div>
+            <div class="summary-item">
+                <span>Pickup Date:</span>
+                <strong><%= new Date(bookingDetails.pickupDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %></strong>
+            </div>
+            <div class="summary-item">
+                <span>Pickup Time:</span>
+                <strong><%= bookingDetails.pickupTime %></strong>
+            </div>
+            <div class="summary-item">
+                <span>Dropoff Date:</span>
+                <strong><%= new Date(bookingDetails.dropoffDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %></strong>
+            </div>
+            <div class="summary-item">
+                <span>Price Per Hour:</span> <!-- Changed to Price Per Hour -->
+                <strong>&#8377;<%= bookingDetails.pricePerHour.toLocaleString("en-IN") %></strong> <!-- Changed to pricePerHour -->
+            </div>
+            <div class="summary-item">
+                <span>Total Hours:</span> <!-- Changed to Total Hours -->
+                <strong><%= bookingDetails.totalHours %></strong> <!-- Changed to totalHours -->
+            </div>
+        </div>
+
+        <!-- Total Price Display -->
+        <div class="total-price-display mb-4">
+            Total Amount: &#8377;<%= bookingDetails.totalPrice.toLocaleString("en-IN") %>
+        </div>
+
+        <!-- Payment Form Section -->
+        <div class="payment-form-section">
+            <h5 class="text-center">Payment Details</h5>
+            <form action="/booking/process" method="POST" class="needs-validation" novalidate>
+                <div class="mb-3">
+                    <label for="cardNumber" class="form-label">Card Number</label>
+                    <input type="text" class="form-control" id="cardNumber" placeholder="XXXX XXXX XXXX XXXX" required pattern="\d{16}" title="Please enter a 16-digit card number">
+                    <div class="invalid-feedback">Please enter a valid 16-digit card number.</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="expiryDate" class="form-label">Expiry Date</label>
+                        <input type="text" class="form-control" id="expiryDate" placeholder="MM/YY" required pattern="(0[1-9]|1[0-2])\/\d{2}" title="Please enter MM/YY format">
+                        <div class="invalid-feedback">Please enter a valid expiry date (MM/YY).</div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="cvv" class="form-label">CVV</label>
+                        <input type="text" class="form-control" id="cvv" placeholder="XXX" required pattern="\d{3,4}" title="Please enter 3 or 4 digit CVV">
+                        <div class="invalid-feedback">Please enter a valid CVV.</div>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label for="cardHolderName" class="form-label">Cardholder Name</label>
+                    <input type="text" class="form-control" id="cardHolderName" placeholder="Name on Card" required>
+                    <div class="invalid-feedback">Please enter the cardholder's name.</div>
+                </div>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-pay btn-lg"><i class="fa-solid fa-credit-card me-2"></i>Pay Now</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Bootstrap form validation script (if not already in boilerplate)
+        (function () {
+            'use strict'
+            var forms = document.querySelectorAll('.needs-validation')
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+    </script>
+</body>
